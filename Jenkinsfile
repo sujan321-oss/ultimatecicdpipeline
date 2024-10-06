@@ -20,7 +20,7 @@ pipeline{
             }
         }
 
-        stage('static code analysis'){
+        stage('static code analysis') {
             environment{
                sonar_url="http://localhost:9000"
             }
@@ -44,7 +44,10 @@ pipeline{
             }
         }
         
-        post {
+    
+    }
+
+     post {
             success{
                 echo "sucessfully image is build"
 
@@ -53,7 +56,4 @@ pipeline{
             echo 'Build failed. Please check the logs.'
         }
         }
-
-    
-    }
 }
