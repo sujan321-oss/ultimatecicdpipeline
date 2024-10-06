@@ -1,0 +1,6 @@
+/application/node_modules
+dockerfile
+# Ignore Terraform directories and state files
+infrastructure/.terraform/*
+infrastructure/*.tfstate
+infrastructure/*.tfstate.backup
