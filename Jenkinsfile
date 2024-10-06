@@ -6,11 +6,10 @@ pipeline{
         }
     }
     stages{
-        stage('checkout'){
-            steps{
-                git branch:'main' url:'https://github.com/sujan321-oss/ultimatecicdpipeline.git'
-
-                sh 'echo "cloned stucessfully"'
+        stage('Checkout') {
+            steps {
+                git(branch: 'main', url: 'https://github.com/sujan321-oss/ultimatecicdpipeline.git')
+                sh 'echo "Cloned successfully"'
             }
         }
 
