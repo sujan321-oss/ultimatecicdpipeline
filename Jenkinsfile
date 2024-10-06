@@ -15,7 +15,7 @@ pipeline{
 
         stage('buildingapp'){
             steps{
-               sh 'cd ultimatepipeline/application && npm install'
+               sh 'cd application && npm install'
                sh 'echo  "build successful"'
             }
         }
@@ -25,7 +25,7 @@ pipeline{
                sonar_url="http://localhost:9000"
             }
             steps{
-                sh 'cd ultimatepipeline/application &&  npm run sonar'
+                sh 'cd application &&  npm run sonar'
             }
         }
 
