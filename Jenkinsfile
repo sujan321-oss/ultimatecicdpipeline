@@ -1,7 +1,7 @@
 pipeline{
     agent{
         docker{
-              image 'khuma1/node-jenkins-agent'
+              image 'khuma1/jenkinsnode'
               args '-v /var/run/docker.sock:/var/run/docker.sock --privileged'
         }
     }
