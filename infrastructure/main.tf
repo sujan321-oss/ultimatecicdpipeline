@@ -1,9 +1,10 @@
 resource "aws_instance" "example" {
-  ami                    = "ami-0866a3c8686eaeeba"
-  instance_type          = "t2.large"
+  ami                    = "ami-0325498274077fac5"
+  instance_type          = "t4g.large"
   associate_public_ip_address = true
   key_name               = "virginiajenkins"
   subnet_id              = "subnet-06c200db60b5b55ac"
+  
   
   user_data = <<-EOF
               #!/bin/bash
