@@ -41,7 +41,7 @@ pipeline{
         stage("build docker image and push to the docker hub") {
             steps{
     script {
-                    sh 'cd ultimatepipeline/application && docker build -t khuma1/finalapp .'
+                    sh 'cd /workspace/jenkinspipeline/applicatio && docker build -t khuma1/finalapp .'
                     sh 'docker push khuma1/finalapp'
                 }
             }
