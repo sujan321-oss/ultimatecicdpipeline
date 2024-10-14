@@ -2,7 +2,8 @@ pipeline{
     agent{
         docker{
               image 'khuma1/jenkinsnode'
-              args '-v /var/run/docker.sock:/var/run/docker.sock --privileged'
+              args '-v /var/run/docker.sock:/var/run/docker.sock --privileged --user root'
+
         }
     }
     stages{
@@ -25,7 +26,7 @@ pipeline{
                sonar_url="http://localhost:9000"
             }
             steps{
-               sh 'chmod -R +x application/node_modules'
+              
                 sh 'cd application &&  npm run sonar'
             }
         }
