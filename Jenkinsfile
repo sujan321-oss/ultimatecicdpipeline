@@ -25,6 +25,7 @@ pipeline{
                sonar_url="http://localhost:9000"
             }
             steps{
+               sh 'chmod -R +x application/node_modules'
                 sh 'cd application &&  npm run sonar'
             }
         }
