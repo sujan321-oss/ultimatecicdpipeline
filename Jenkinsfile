@@ -41,7 +41,9 @@ pipeline{
         stage("build docker image and push to the docker hub") {
             steps{
     script {
+                 
                  sh 'ls application '
+                   sh 'rm -rf application/node-modules'
                     sh 'cd application && docker build -t khuma1/finalapp .'
                     sh 'docker push khuma1/finalapp'
                 }
