@@ -1,5 +1,6 @@
 /application/node_modules
 dockerfile
+!/application/Dockerfile
 # Ignore Terraform directories and state files
 infrastructure/.terraform/*
 infrastructure/*.tfstate
