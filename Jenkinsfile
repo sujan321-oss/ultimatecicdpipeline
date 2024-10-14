@@ -1,12 +1,11 @@
-pipeline{
-    agent{
-        docker{
-              image 'khuma1/jenkinsnode'
-              args '-v /var/run/docker.sock:/var/run/docker.sock --privileged --user root'
-
+pipeline {
+    agent {
+        docker {
+            image 'khuma1/jenkinsnode'
+            args '-v /var/run/docker.sock:/var/run/docker.sock --privileged --user root'
         }
     }
-    stages{
+    stages {
         stage('Checkout') {
             steps {
                 git(branch: 'main', url: 'https://github.com/sujan321-oss/ultimatecicdpipeline.git')
@@ -14,49 +13,47 @@ pipeline{
             }
         }
 
-        stage('buildingapp'){
-            steps{
-               sh 'cd application && npm install'
-               sh 'echo  "build successful"'
+        stage('Building App') {
+            steps {
+                sh 'cd application && npm install'
+                sh 'chmod +x node_modules/sonar-scanner/bin/sonar-scanner'  // Ensure sonar-scanner is executable
+                sh 'echo "Build successful"'
             }
         }
 
-        stage('static code analysis') {
-            environment{
-               sonar_url="http://localhost:9000"
+        stage('Static Code Analysis') {
+            environment {
+                sonar_url = "http://localhost:9000"
             }
-            steps{
-              
-                sh 'cd application &&  npm run sonar'
+            steps {
+                sh 'cd application && npm run sonar'
             }
         }
 
         stage("Docker Login") {
             steps {
-         script {
-            sh 'docker login -u "khumapokharel2076@gmail.com" -p "P00kharelk#"'
+                script {
+                    sh 'docker login -u "khumapokharel2076@gmail.com" -p "P00kharelk#"'
+                }
+            }
         }
-         }
-      }
 
-        stage("build docker image and push to the docker hub") {
-            steps{
-    script {
+        stage("Build Docker Image and Push to Docker Hub") {
+            steps {
+                script {
                     sh 'cd ultimatepipeline/application && docker build -t khuma1/finalapp .'
                     sh 'docker push khuma1/finalapp'
                 }
             }
-           
         }
     }
 
-     post {
-            success{
-                echo "sucessfully image is build"
-
-            }
-            failure {
+    post {
+        success {
+            echo "Successfully built the image."
+        }
+        failure {
             echo 'Build failed. Please check the logs.'
         }
-        }
+    }
 }
