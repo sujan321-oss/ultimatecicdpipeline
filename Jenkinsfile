@@ -42,7 +42,7 @@ pipeline{
             steps{
     script {
                  sh 'ls'
-                    sh 'cd /workspace/jenkinspipeline/application && docker build -t khuma1/finalapp .'
+                    sh 'cd application && docker build -t khuma1/finalapp .'
                     sh 'docker push khuma1/finalapp'
                 }
             }
